@@ -24,15 +24,18 @@ class Ui_Form(object):
         self.parse_button.setGeometry(QtCore.QRect(150, 240, 101, 31))
         self.parse_button.setObjectName("parse_button")
         self.plainTextEdit = QtWidgets.QPlainTextEdit(Form)
-        self.plainTextEdit.setGeometry(QtCore.QRect(40, 70, 321, 151))
+        self.plainTextEdit.setGeometry(QtCore.QRect(40, 70, 181, 151))
         self.plainTextEdit.setObjectName("plainTextEdit")
+        self.pic_label = QtWidgets.QLabel(Form)
+        self.pic_label.setGeometry(QtCore.QRect(260, 80, 101, 141))
+        self.pic_label.setText("")
+        self.pic_label.setObjectName("pic_label")
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "查看APK信息"))
+        Form.setWindowTitle(_translate("Form", "Form"))
         self.select_button.setText(_translate("Form", "选择文件"))
         self.parse_button.setText(_translate("Form", "解析"))
-

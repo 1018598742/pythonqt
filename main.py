@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import *
 from PyQt5 import QtCore
 import obtainapkinfo
 import json
+from PyQt5.QtGui import QPixmap
 
 
 def openFile(ui):
@@ -23,11 +24,17 @@ def parseFile(ui):
     if filePath != '':
         ui.parse_button.setEnabled(False)
         apk_info = obtainapkinfo.obtainApkInfo(filePath)
-        print(apk_info)
-        show_json = json.dumps(apk_info, indent=4)
-        print(show_json)
+        # print(apk_info)
+        # show_json = json.dumps(apk_info, indent=4)
+        # print(show_json)
         show_apk_info = "应用名：%s \n包名：%s " % (apk_info['app_name'],apk_info['package_name'])
         ui.plainTextEdit.setPlainText(show_apk_info)
+        app_icon_path = apk_info['app_icon_path']
+        icon_path = obtainapkinfo.obtainIcon(filePath, app_icon_path)
+        if icon_path != '获取icon失败':
+            pixmap = QPixmap(icon_path)
+            ui.pic_label.setPixmap(pixmap)
+            ui.pic_label.setScaledContents(True)
         ui.parse_button.setEnabled(True)
     else:
         print('路径是空')
