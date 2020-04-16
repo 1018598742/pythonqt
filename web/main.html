@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>获取 APK 信息</title>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="/eel.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="card mt-4">
+        <div class="card-body">
+            <h4>APK信息</h4>
+            <label for="uploadFile"><input type="file" id="uploadFile"/></label>
+            <hr/>
+            <button class="btn btn-lg btn-success" onclick="obtainApkInfo()">获取APK信息</button>
+            <p id="out1"></p>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<script>
+    // function obtainApkInfo(){
+    //     var files = document.getElementById('uploadFile');
+    //     var fileLength = files.length;
+    //     console.log("几个文件："+fileLength);
+    //     for (let i = 0; i < files.length; i++) {
+    //         console.log("文件名="+name)
+    //     }
+    //     // var name = selectFile.pathname;
+    //     // console.log("文件名="+name)
+    //     // // var filePath = $("#file").val();
+    //     //
+    //     // $("#out1").text(name);
+    // }
+    async function obtainApkInfo() {
+        var file = $("#file").val();
+        let content = await eel.py_obtain_app_info_fun(file)();
+        $("#out1").text(content);
+    }
+    // 调用python中的函数,注意需要在定义前加上async声明异步
+    // async function doEncrypt() {
+    //     eel.expose(js_click);
+    //
+    //     function js_click() {
+    //
+    //     }
+    //
+    //     var par = $("#in").val();
+    //     let content = await eel.py_encrypt_fun(par)();  //这里用let不用var,调用的python函数后面是两对括号
+    //     var showOrigContent = par;
+    //     var showEncryContent = content;
+    //     $("#out1").text(showOrigContent);
+    //     $("#out2").text(showEncryContent);
+    //
+    // }
+    //
+    // async function doDecrypt() {
+    //     var par = $("#in").val();
+    //     let content = await eel.py_decrypt_fun(par)();
+    //     var showOrigContent = par;
+    //     var showDecryContent = content;
+    //     $("#out1").text(showDecryContent);
+    //     $("#out2").text(showOrigContent);
+    // }
+    //
+    // // 将js中的函数暴露给python,这个貌似不怎么需要用
+    // eel.expose(js_fun);
+    //
+    // function js_fun(a) {
+    //     return ('这是调用js中函数返回的结果：' + a);
+    // }
+</script>
+</body>
+</html>
